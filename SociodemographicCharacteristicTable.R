@@ -10,7 +10,7 @@ source("load_data.R")
 rd <- 2 # digits to round to
 Job_SOC_cols <- paste("X22617.0.",0:39,sep="")
 
-source("ORdatawrangling.R")
+source("data_wrangling.R")
 
 model_data  %>%
   filter(!is.na(JiNS)) %>%
