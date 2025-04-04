@@ -102,6 +102,7 @@ ukb_data_processed %>%
   mutate(Asthma_def_ms=Asthma_med_ms & Asthma2) %>%
   mutate(FEV1lt80=X20154.0.0<80) %>%
   ##
+  mutate(Sleep_med=(grepl(patterns_sleep,med_code))) %>%
   ##
   mutate(Packyears_prev_n=(Age_stopped_prev_n-Age_started_prev_n)*Numperday_prev_n/20) %>%
   mutate(Packyears_curr_n=(Age-Age_started_curr_n)*Numperday_curr_n/20) %>%

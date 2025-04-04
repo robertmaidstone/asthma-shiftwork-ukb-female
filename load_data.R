@@ -14,6 +14,7 @@ load("data/ukb_merged.RData")
 
 read.csv(file = "data/shrinemedicationlist.csv")  -> medlist
 read.csv(file = "data/occupation_asthmarisk_v2.csv")  -> occ_asthma
+read.csv(file = "data/sleepmedication.csv")  -> sleep_medlist
 
 medlist %>% dplyr::select(Code_description) %>%
   unlist %>%
@@ -28,6 +29,10 @@ medlist %>%
   lapply(function(x){strsplit(as.character(x),split = " ")[[1]][1]}) %>%
   unlist %>%
   paste0(",",.,",",collapse="|") -> patterns_ms
+
+sleep_medlist %>% dplyr::select(Coding) %>%
+  unlist %>%
+  paste0(",",.,",",collapse="|") -> patterns_sleep
 
 # filtered jobs -----------------------------------------------------------
 
