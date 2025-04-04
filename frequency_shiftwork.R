@@ -156,7 +156,8 @@ ukb_data_processed %>%
                 X22650.0.0:X22650.0.32,
                 X22640.0.0:X22640.0.32,
                 X22643.0.0:X22643.0.19,
-                X22653.0.0:X22653.0.32,Packyears_n,Smoking_n) %>%
+                X22653.0.0:X22653.0.32,Packyears_n,Smoking_n,
+                gen_sex=X22001.0.0) %>%
   mutate(X22650.0.33=NA,X22650.0.34=NA,X22650.0.35=NA,X22650.0.36=NA,X22650.0.37=NA,X22650.0.38=NA,X22650.0.39=NA) %>%
   mutate(X22640.0.33=NA,X22640.0.34=NA,X22640.0.35=NA,X22640.0.36=NA,X22640.0.37=NA,X22640.0.38=NA,X22640.0.39=NA) %>%
   mutate(Hypertension=grepl(",1065,",nCI_code)) %>%
@@ -310,11 +311,11 @@ model_data$sum.MNSorNS.group %>% table(useNA = "always")
 save(model_data,file="data/frequency_data.RData")
 
 ###########################
-
+load("data/frequency_data.RData")
 
 model_vec<-c("freq.MNSorNS.group  + Year_of_birth",
-             "freq.MNSorNS.group  + Year_of_birth + Ethnicity_o + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW_o + Job_AsthmaRisk + Job_MedRequired + Chronotype_o",
-             "freq.MNSorNS.group  + Year_of_birth + Ethnicity_o + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW_o + Job_AsthmaRisk + Job_MedRequired + Chronotype_o + Smoking_n + Packyears_nn + BMI_o + SleepDur")
+             "freq.MNSorNS.group  + Year_of_birth + Ethnicity + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW + Job_AsthmaRisk + Job_MedRequired + Chronotype",
+             "freq.MNSorNS.group  + Year_of_birth + Ethnicity + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW + Job_AsthmaRisk + Job_MedRequired + Chronotype + Smoking_n + Packyears_nn + BMI + SleepDur")
 model_names <- c("Model 1: Age adjusted.",
                  #"Model 2: Adjusted by age, smoking status, pack years, alcohol status, daily alcohol intake, ethnicity, TDI, days exercised (walked, moderate, vigorous), chronotype, length of working week, job asthma risk, job medical required.",
                  "Model 2: Adjusted by multivariate covariates.",
