@@ -10,6 +10,11 @@ round_df <- function(df, digits) {
   (df)
 }
 
+tf<-function(table_input){
+  table_input %>% mutate(samplesize=`FALSE`+`TRUE`,trueprop=round(`TRUE`/samplesize*100,2)) %>% 
+    dplyr::select(sum.MNSorNS.group,`TRUE`,trueprop,samplesize,everything()) %>% dplyr::select(-`FALSE`) %>% t
+}
+
 ORmodelrun.sumNSW<-function(model_data,DependentVar,model_vec,model_names){
   model_vec<-paste(DependentVar,"~",model_vec)
   
@@ -150,7 +155,8 @@ ukb_data_processed %>%
                 X22650.0.0:X22650.0.32,
                 X22640.0.0:X22640.0.32,
                 X22643.0.0:X22643.0.19,
-                X22653.0.0:X22653.0.32,Packyears_n,Smoking_n) %>%
+                X22653.0.0:X22653.0.32,Packyears_n,Smoking_n,
+                gen_sex=X22001.0.0) %>%
   mutate(X22650.0.33=NA,X22650.0.34=NA,X22650.0.35=NA,X22650.0.36=NA,X22650.0.37=NA,X22650.0.38=NA,X22650.0.39=NA) %>%
   mutate(X22640.0.33=NA,X22640.0.34=NA,X22640.0.35=NA,X22640.0.36=NA,X22640.0.37=NA,X22640.0.38=NA,X22640.0.39=NA) %>%
   mutate(Hypertension=grepl(",1065,",nCI_code)) %>%
@@ -275,8 +281,25 @@ DependentVar <- "Asthma_def_ms"
 ORmodelrun.sumNSW(model_data_temp,DependentVar,model_vec,model_names)[[1]] -> tab7asthmadefms.sumNSW
 trend.sumNSW(model_data_temp,DependentVar,model_vec,model_names)-> pval.sumNSW
 
-
-save(pval.sumNSW,tab6asthmadef.sumNSW,tab7asthmadefms.sumNSW,
-     file="data/ORtablesdata.sumNSW_newsmoking.RData")
+###########################
 
 
+model_vec<-c("sum.MNSorNS.group  + Year_of_birth",
+             "sum.MNSorNS.group  + Year_of_birth + Ethnicity_o + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW_o + Job_AsthmaRisk + Job_MedRequired + Chronotype_o",
+             "sum.MNSorNS.group  + Year_of_birth + Ethnicity_o + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW_o + Job_AsthmaRisk + Job_MedRequired + Chronotype_o + Smoking_n + Packyears_nn + BMI_o + SleepDur")
+model_names <- c("Model 1: Age adjusted.",
+                 #"Model 2: Adjusted by age, smoking status, pack years, alcohol status, daily alcohol intake, ethnicity, TDI, days exercised (walked, moderate, vigorous), chronotype, length of working week, job asthma risk, job medical required.",
+                 "Model 2: Adjusted by multivariate covariates.",
+                 "Model 3: Model 2 covariates + mediators")
+
+model_data  %>%
+  filter(!is.na(JiNS)) %>%
+  filter(!is.na(Sex)) %>%
+  filter(!is.na(Packyears_nn)) %>%
+  filter((Asthma_med_all == FALSE&Asthma2==FALSE) | (Asthma_def_ms==TRUE)) %>%
+  filter(num_yij!=0) %>%
+  as_tibble -> model_data_temp
+DependentVar <- "Asthma_def_ms"
+
+ORmodelrun.sumNSW(model_data_temp%>% filter(Sex==0),DependentVar,model_vec,model_names)[[1]] -> mslife_women
+ORmodelrun.sumNSW(model_data_temp%>% filter(Sex==1),DependentVar,model_vec,model_names)[[1]] -> mslife_men

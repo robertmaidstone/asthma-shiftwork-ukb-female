@@ -311,33 +311,6 @@ save(model_data,file="data/frequency_data.RData")
 
 ###########################
 
-model_vec<-c("freq.MNSorNS.group + Sex + Year_of_birth",
-             "freq.MNSorNS.group + Sex + Year_of_birth + Smoking_n + Alcohol + Ethnicity + TDI + DaysWalked + DaysModerate + DaysVigorous + BMI + Packyears_nn + Alcintake + Chronotype + LengthofWW + Job_AsthmaRisk + Job_MedRequired",
-             "freq.MNSorNS.group + Sex + Year_of_birth + Smoking_n + Alcohol + Ethnicity + TDI + SleepDur + DaysWalked + DaysModerate + DaysVigorous + BMI + Packyears_nn + Alcintake + Chronotype + LengthofWW + Job_AsthmaRisk + Job_MedRequired")
-model_names <- c("Model 1: Age and Sex adjusted OR (95% CI)",
-                 #"Model 2: Multivariate adjusted OR (95% CI)",
-                 "Model 2: Multivariable adjusted OR (95% CI)",
-                 "Model 3: Model 2 covariates + mediators (95% CI)")
-
-
-
-model_data %>% filter((Asthma_med_all == FALSE&Asthma2==FALSE) |
-                        (Asthma_def==TRUE)) %>%filter(num_yij!=0) %>% filter(!is.na(Packyears_nn)) -> model_data_temp
-DependentVar <- "Asthma_def"
-ORmodelrun.freqNSW(model_data_temp,DependentVar,model_vec,model_names)[[1]] -> tab6asthmadef.freqNSW
-
-model_data %>% filter((Asthma_med_all == FALSE&Asthma2==FALSE) |
-                        (Asthma_def_ms==TRUE)) %>% filter(num_yij!=0)%>% filter(!is.na(Packyears_nn)) -> model_data_temp
-DependentVar <- "Asthma_def_ms"
-ORmodelrun.freqNSW(model_data_temp,DependentVar,model_vec,model_names)[[1]] -> tab7asthmadefms.freqNSW
-trend.freqNSW(model_data_temp,DependentVar,model_vec,model_names)-> pval.freqNSW
-
-save(pval.freqNSW,tab7asthmadefms.freqNSW,tab6asthmadef.freqNSW,
-     file="data/ORtablesdata.freqNSW_newsmoking_2rev.RData")
-
-
-###########################
-
 
 model_vec<-c("freq.MNSorNS.group  + Year_of_birth",
              "freq.MNSorNS.group  + Year_of_birth + Ethnicity_o + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW_o + Job_AsthmaRisk + Job_MedRequired + Chronotype_o",
