@@ -19,14 +19,18 @@ Manipulation of variables including creating variables for specific diseases (fr
 
 Creates social-demographic characteristic table (Table 1) and health characteristic table (Table 2) of key variables.
 
-## OR_asthmashiftsex
+## OR_asthmashiftsex.R
 
 Figure 1 (maybe 2 in medRxiv/CHEST versions) plus p-values
 
-## frequency_shiftwork
+## frequency_shiftwork.R
 
 Frequency of shift work using historical data. Maybe going in supplemental
 
-## lifetime_shiftwork
+## lifetime_shiftwork.R
 
 Lifetime of shift work using historical data. Maybe going in supplemental
+
+## mediation_analysis.R
+
+Mediation analysis of additional covariates in model 3

@@ -25,12 +25,16 @@ mod2 <- glm(Asthma_def_ms ~  JiNS  + Year_of_birth + BMI_o,model_data_temp,famil
 results <- mediate(mod1,mod2, treat = "JiNS",mediator = "BMI_o",boot=T,sims=100,control.value = "No shift work", treat.value = "Always")
 results %>% summary
 
-mod1 <- lm(BMI ~  JiNS  + Year_of_birth + Ethnicity_o + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW_o + Job_AsthmaRisk + Job_MedRequired + Chronotype_o,model_data_temp)
-mod2 <- glm(Asthma_def_ms ~  JiNS  + Year_of_birth + Ethnicity_o + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW_o + Job_AsthmaRisk + Job_MedRequired + Chronotype_o + BMI,model_data_temp,family = binomial(link="logit"))
-results <- mediate(mod1,mod2, treat = "JiNS",mediator = "BMI",boot=T,sims=100,control.value = "No shift work", treat.value = "Always")
+results_bmi_m1 <- results
+
+mod1 <- lm(BMI_o ~  JiNS  + Year_of_birth + Ethnicity_o + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW_o + Job_AsthmaRisk + Job_MedRequired + Chronotype_o,model_data_temp)
+mod2 <- glm(Asthma_def_ms ~  JiNS  + Year_of_birth + Ethnicity_o + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW_o + Job_AsthmaRisk + Job_MedRequired + Chronotype_o + BMI_o,model_data_temp,family = binomial(link="logit"))
+results <- mediate(mod1,mod2, treat = "JiNS",mediator = "BMI_o",boot=T,sims=100,control.value = "No shift work", treat.value = "Always")
 results %>% summary
 
 results_bmi <- results
+
+save(file = "data/mediationresults.RData",results_bmi_m1,results_bmi)
 
 #####
 
