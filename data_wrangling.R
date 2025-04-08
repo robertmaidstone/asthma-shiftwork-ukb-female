@@ -55,7 +55,11 @@ ukb_data_processed %>%
                 menarche=X2714.0.0,
                 livebirths=X2734.0.0,
                 ageatmenopause=X3581.0.0,
-                oestradiolmissing=X30805.0.0
+                oestradiolmissing=X30805.0.0,
+                energy1=X100002.0.0,
+                energy2=X100002.1.0,
+                energy3=X100002.2.0,
+                energy4=X100002.3.0
                 
   ) %>%
   ##
@@ -188,3 +192,4 @@ model_data %>%
   mutate(LengthofWW_o=ifelse(is.na(LengthofWW),0,LengthofWW)) %>%
   mutate(LengthofWW=ifelse(Current_worker==FALSE,0,ifelse(LengthofWW<0,NA,LengthofWW))) %>%
   mutate(Sex=gen_sex)-> model_data
+

@@ -7,7 +7,7 @@ library(tidyverse)
 
 # load data ---------------------------------------------------------------
 
-load("data/ukb_merged.RData")
+load("data/ukb_merged_diet.RData")
 # ukb_data_processed <- ukb_merged 
 # 
 # rm(ukb_merged)

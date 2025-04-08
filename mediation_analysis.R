@@ -34,7 +34,7 @@ results %>% summary
 
 results_bmi <- results
 
-save(file = "data/mediationresults.RData",results_bmi_m1,results_bmi)
+#save(file = "data/mediationresults.RData",results_bmi_m1,results_bmi)
 
 #####
 
@@ -54,7 +54,7 @@ results %>% summary
 
 results_sleepdur <- results
 
-
+save(file = "data/mediationresults2.RData",results_bmi,results_packyears,results_sleepdur)
 ##### this might need editing
 
 model_data_temp %>% mutate(Smoking2=ifelse((Smoking_n=="current heavy smoker")|(Smoking_n=="current occassional smoker, previously a heavy smoker")|(Smoking_n=="not a current smoker, smoked heavily previously"),1,0)) -> model_data_temp2
