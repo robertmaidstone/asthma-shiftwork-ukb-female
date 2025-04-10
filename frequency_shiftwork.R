@@ -335,3 +335,8 @@ DependentVar <- "Asthma_def_ms"
 
 ORmodelrun.freqNSW(model_data_temp%>% filter(gen_sex==0),DependentVar,model_vec,model_names)[[1]] -> msfreq_women
 ORmodelrun.freqNSW(model_data_temp%>% filter(gen_sex==1),DependentVar,model_vec,model_names)[[1]] -> msfreq_men
+
+trend.freqNSW(model_data_temp%>% filter(gen_sex==0),DependentVar,model_vec,model_names)-> pval.freqNSW_women
+trend.freqNSW(model_data_temp%>% filter(gen_sex==1),DependentVar,model_vec,model_names)-> pval.freqNSW_men
+
+
