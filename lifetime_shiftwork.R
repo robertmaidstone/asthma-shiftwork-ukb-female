@@ -175,6 +175,9 @@ ukb_data_processed %>%
   mutate(Asthma_med_ms=(grepl(patterns_ms,med_code))) %>%
   mutate(Asthma_def=Asthma_med_all & Asthma2) %>%
   mutate(Asthma_def_ms=Asthma_med_ms & Asthma2) %>%
+  ##
+  mutate(Sleep_med=(grepl(patterns_sleep,med_code))) %>%
+  ##
   mutate(FEV1lt80=X20154.0.0<80) %>%
   mutate(JiNS=factor(JiNS,levels=c("No shift work","Never/rarely","Sometimes","Usually","Always"))) %>%
   mutate(Smoking=factor(Smoking,levels=c(0,-3,1,2))) %>%
@@ -263,7 +266,7 @@ load("data/lifetime_data.RData")
 
 model_vec<-c("sum.MNSorNS.group + Sex + Year_of_birth",
              "sum.MNSorNS.group + Sex + Year_of_birth + Alcohol + Ethnicity + TDI + DaysWalked + DaysModerate + DaysVigorous  + Alcintake + Chronotype + LengthofWW + Job_AsthmaRisk + Job_MedRequired",
-             "sum.MNSorNS.group + Sex + Year_of_birth + Smoking_n + Alcohol + Ethnicity + TDI + SleepDur + DaysWalked + DaysModerate + DaysVigorous + BMI + Packyears_nn + Alcintake + Chronotype + LengthofWW + Job_AsthmaRisk + Job_MedRequired")
+             "sum.MNSorNS.group + Sex + Year_of_birth + Smoking_n + Alcohol + Ethnicity + TDI + SleepDur + DaysWalked + DaysModerate + DaysVigorous + BMI + Packyears_nn + Alcintake + Chronotype + LengthofWW + Job_AsthmaRisk + Job_MedRequired + Sleep_med")
 model_names <- c("Model 1: Age and Sex adjusted OR (95% CI)",
                  #"Model 2: Multivariate adjusted OR (95% CI)",
                  "Model 2: Multivariable adjusted OR (95% CI)",
