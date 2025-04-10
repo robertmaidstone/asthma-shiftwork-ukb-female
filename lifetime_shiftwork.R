@@ -290,7 +290,7 @@ trend.sumNSW(model_data_temp,DependentVar,model_vec,model_names)-> pval.sumNSW
 
 model_vec<-c("sum.MNSorNS.group  + Year_of_birth",
              "sum.MNSorNS.group  + Year_of_birth + Ethnicity + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW + Job_AsthmaRisk + Job_MedRequired + Chronotype",
-             "sum.MNSorNS.group  + Year_of_birth + Ethnicity + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW + Job_AsthmaRisk + Job_MedRequired + Chronotype + Smoking_n + Packyears_nn + BMI + SleepDur")
+             "sum.MNSorNS.group  + Year_of_birth + Ethnicity + TDI + Alcohol + Alcintake + DaysWalked + DaysModerate + DaysVigorous  + LengthofWW + Job_AsthmaRisk + Job_MedRequired + Chronotype + Smoking_n + Packyears_nn + BMI + SleepDur + Sleep_med")
 model_names <- c("Model 1: Age adjusted.",
                  #"Model 2: Adjusted by age, smoking status, pack years, alcohol status, daily alcohol intake, ethnicity, TDI, days exercised (walked, moderate, vigorous), chronotype, length of working week, job asthma risk, job medical required.",
                  "Model 2: Adjusted by multivariate covariates.",
@@ -307,3 +307,7 @@ DependentVar <- "Asthma_def_ms"
 
 ORmodelrun.sumNSW(model_data_temp%>% filter(gen_sex==0),DependentVar,model_vec,model_names)[[1]] -> mslife_women
 ORmodelrun.sumNSW(model_data_temp%>% filter(gen_sex==1),DependentVar,model_vec,model_names)[[1]] -> mslife_men
+
+trend.sumNSW(model_data_temp%>% filter(gen_sex==0) %>% mutate(num_yiMNSorNSj=unlist(num_yiMNSorNSj)),DependentVar,model_vec,model_names)-> pval.mslife_women
+trend.sumNSW(model_data_temp%>% filter(gen_sex==1)%>% mutate(num_yiMNSorNSj=unlist(num_yiMNSorNSj)),DependentVar,model_vec,model_names)-> pval.mslife_men
+
