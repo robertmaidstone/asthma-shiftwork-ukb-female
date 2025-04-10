@@ -176,6 +176,9 @@ ukb_data_processed %>%
   mutate(Asthma_med_ms=(grepl(patterns_ms,med_code))) %>%
   mutate(Asthma_def=Asthma_med_all & Asthma2) %>%
   mutate(Asthma_def_ms=Asthma_med_ms & Asthma2) %>%
+  ##
+  mutate(Sleep_med=(grepl(patterns_sleep,med_code))) %>%
+  ##
   mutate(FEV1lt80=X20154.0.0<80) %>%
   mutate(JiNS=factor(JiNS,levels=c("No shift work","Never/rarely","Sometimes","Usually","Always"))) %>%
   mutate(Smoking=factor(Smoking,levels=c(0,-3,1,2))) %>%
