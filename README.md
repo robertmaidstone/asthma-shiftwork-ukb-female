@@ -16,14 +16,25 @@ The study findings are published in:
 ```
 asthma-shiftwork-ukb-female/
 ├── data/                     # External reference files (not included)
+├── examples/                     # pngs for examples in README
 ├── load_data.R               # Data ingestion and merging
 ├── data_wrangling.R          # Variable derivation and cleaning
+├── data_wrangling_operations.R          # Variable derivation and cleaning including job data
+├── modelfunctions.R  
 ├── CharacteristicTables.R    # Table 1 and Table 2 generation
 ├── OR_asthmashiftsex.R       # Main regression models and figures
+├── OR_asthmashiftsex_nohyst.R       # Main regression models and figures with hysterectomy women filtered out
+├── OR_asthmachronosex.R       # Chronotype relationships
 ├── mediation_analysis.R      # Mediation models
 ├── frequency_shiftwork.R     # Historical shift work frequency analyses
 ├── lifetime_shiftwork.R      # Lifetime shift work exposure analyses
+├── hormoneaddinmodels_quants.R   
+├── menopause_hyst.R
+├── menopauseasthmarelationships.R
+├── menopausesexinteractions.R
+├── sexhormonesonasthma.R  
 └── README.md
+└── LICENSE
 ```
 
 
