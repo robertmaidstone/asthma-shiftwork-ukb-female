@@ -16,14 +16,25 @@ The study findings are published in:
 ```
 asthma-shiftwork-ukb-female/
 ├── data/                     # External reference files (not included)
+├── examples/                     # pngs for examples in README
 ├── load_data.R               # Data ingestion and merging
 ├── data_wrangling.R          # Variable derivation and cleaning
+├── data_wrangling_operations.R          # Variable derivation and cleaning including job data
+├── modelfunctions.R  
 ├── CharacteristicTables.R    # Table 1 and Table 2 generation
 ├── OR_asthmashiftsex.R       # Main regression models and figures
+├── OR_asthmashiftsex_nohyst.R       # Main regression models and figures with hysterectomy women filtered out
+├── OR_asthmachronosex.R       # Chronotype relationships
 ├── mediation_analysis.R      # Mediation models
 ├── frequency_shiftwork.R     # Historical shift work frequency analyses
 ├── lifetime_shiftwork.R      # Lifetime shift work exposure analyses
+├── hormoneaddinmodels_quants.R   
+├── menopause_hyst.R
+├── menopauseasthmarelationships.R
+├── menopausesexinteractions.R
+├── sexhormonesonasthma.R  
 └── README.md
+└── LICENSE
 ```
 
 
@@ -55,8 +66,8 @@ Generates:
 - **Table 1:** Sociodemographic characteristics  
 - **Table 2:** Health characteristics  
 
-**📌 _Placeholder — insert example table screenshot here_**  
-*(e.g., Table 1 or Table 2 as PNG)*
+**Table 1: Social-demographic characteristics by current shift work exposure**  
+<img src="/examples/table1.PNG" alt="Table 1, from manuscript, top few rows. Social-demographic characteristics by current shift work exposure" width="500" height="500">
 
 ---
 
@@ -66,7 +77,7 @@ Generates:
 - Odds ratios and confidence intervals.
 - Generates Figure 1 (and Figure 2 in some versions).
 
-**Figure 1**  
+**Figure 1: Adjusted odds rations of asthma and asthma symptoms**  
 <img src="/examples/fig1.png" alt="Figure 1, from manuscript. Adjusted odds ratios (95% confidence intervals) of asthma and asthma symptoms by current shift work exposure, stratified by sex." width="500" height="500">
 
 ---
