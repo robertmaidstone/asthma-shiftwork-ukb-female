@@ -56,7 +56,7 @@ Generates:
 - **Table 2:** Health characteristics  
 
 **Table 1: Social-demographic characteristics by current shift work exposure**  
-<img src="/examples/table1.png" alt="Table 1, from manuscript, top few rows. Social-demographic characteristics by current shift work exposure" width="500" height="500">
+<img src="/examples/table1.PNG" alt="Table 1, from manuscript, top few rows. Social-demographic characteristics by current shift work exposure" width="500" height="500">
 
 ---
 
