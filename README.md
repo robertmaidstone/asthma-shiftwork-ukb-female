@@ -66,8 +66,8 @@ Generates:
 - Odds ratios and confidence intervals.
 - Generates Figure 1 (and Figure 2 in some versions).
 
-**📌 _Placeholder — insert example figure here_**  
-![*(e.g., OR plot showing sex differences)*](https://publications.ersnet.org/content/erjor/11/6/00137-2025/F1.large.jpg)
+**Figure 1**  
+<img src="/examples/fig1.png" alt="Figure 1, from manuscript. Adjusted odds ratios (95% confidence intervals) of asthma and asthma symptoms by current shift work exposure, stratified by sex." width="700" height="700">
 
 ---
 
